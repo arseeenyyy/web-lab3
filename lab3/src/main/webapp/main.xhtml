@@ -76,7 +76,7 @@
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value="Check" style="font-size: 18px; font-family: monospace; color: #333; background-color: #fafafa; border: 2px solid black; border-radius: 10px; padding: 10px 20px; cursor: pointer; transition: background-color 0.3s ease-in-out, color 0.3s ease; outline: none; display: block; margin: 20px auto; width: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                    <f:ajax execute="@form" listener="#{formBean.processForm(pointBean)}" onevent="drawCircle()" render="resultTable" />
+                    <f:ajax execute="@form" listener="#{formBean.processForm(pointBean)}" render="resultTable" />
                 </h:commandButton>        
             </h:form>
             <h:form>
