@@ -1,0 +1,114 @@
+:root {
+    --primary-background-color: #fafafa; 
+    --primary-hover-color: #ff69b4;
+    --default-border-color: black;
+    --standart-border-radius: 10px;
+}
+
+#mainpage-header {
+    background-color: var(--primary-background-color);
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    color: black;
+    font-size: 15px;
+    padding: 15px;
+    border: 3px solid #333;
+    border-radius: var(--standart-border-radius);
+    margin: 20px auto;
+    width: 90%;
+}
+
+#upper-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#graphContainer, .form-container {
+    text-align: center;
+    flex: 1;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    border: 3px solid var(--default-border-color);
+    border-radius: var(--standart-border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#results-container {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 50%;
+    border: 3px solid var(--default-border-color);
+    border-radius: var(--standart-border-radius);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    color: #333;
+    
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+    color: #333;
+}
+
+.data-table tr:nth-child(odd) {
+    text-align: center;
+    background-color: #fff;
+}
+
+.data-table tr:nth-child(even) {
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    text-align: center;
+    background-color: #f1f1f1;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    width: auto;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-field {
+    margin: 0 auto; /* Центрирует элементы внутри .input-group */
+    display: block; /* Делает элементы блочными для корректного выравнивания */
+}
+
+.submit-button {
+    font-size: 18px;
+    font-family: monospace;
+    color: #333;
+    background-color: #fafafa;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease;
+    outline: none;
+    width: 200px; /* Задает фиксированную ширину для кнопки */
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+}
