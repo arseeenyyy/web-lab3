@@ -20,13 +20,21 @@ public class FormBean {
 
     public void processForm(Point point) {
         long startTime = System.nanoTime();
-        boolean isHit = Checker.isHit(point.getX(), point.getY(), point.getR());
+        boolean isHit = Checker.isHit(point.getX(), point.getY(), point.getR()); 
         point.setIsHit(isHit);
         point.setCreatedAt(new Date());
         long endTime = System.nanoTime();
         point.setExecutionTime(endTime - startTime);
-
+        
+        if (shouldUpdateAllPoints(point.getR())) {
+            databaseService.updateAllPoints(point.getR());
+            resultBean.updatePoints(point.getR());
+        }
         databaseService.addPoint(point);
         resultBean.addResult(point);
+    }
+
+    private boolean shouldUpdateAllPoints(float radius) {
+        return !resultBean.getResults().isEmpty() && resultBean.getResults().get(0).getR() != radius;
     }
 }

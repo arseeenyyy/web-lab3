@@ -1,5 +1,6 @@
 package com.github.arseeenyyy;
 
+import com.github.arseeenyyy.utils.Checker;
 import com.github.arseeenyyy.utils.Point;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -8,7 +9,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
-
 
 @ApplicationScoped
 public class DatabaseService {
@@ -32,5 +32,13 @@ public class DatabaseService {
     public List<Point> getAllPoints() {
         TypedQuery<Point> query = entityManager.createQuery("SELECT p FROM Point p", Point.class);
         return query.getResultList();
-    }    
+    } 
+    @Transactional 
+    public void updateAllPoints(float radius) {
+        List<Point> points = getAllPoints();
+        for (Point point : points) {
+            point.setR(radius);
+            point.setIsHit(Checker.isHit(point.getX(), point.getY(), radius));
+        }
+    }
 }
