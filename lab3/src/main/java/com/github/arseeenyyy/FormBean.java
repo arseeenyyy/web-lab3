@@ -19,11 +19,12 @@ public class FormBean {
     private ResultBean resultBean;
 
     public void processForm(Point point) {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         boolean isHit = Checker.isHit(point.getX(), point.getY(), point.getR());
         point.setIsHit(isHit);
         point.setCreatedAt(new Date());
-        point.setExecutionTime(System.currentTimeMillis() - startTime);
+        long endTime = System.nanoTime();
+        point.setExecutionTime(endTime - startTime);
 
         databaseService.addPoint(point);
         resultBean.addResult(point);
