@@ -1,20 +1,30 @@
 function getValuesFromTable(data) {
-    if (data.status == "success") {
         clearPoints();
         const table = document.getElementById('resultTable');
-        for (let i = 1; i < table.rows.length; i ++) {
-            const row = table.rows[i]; 
+        
+        const firstRow = table.rows[1];
+        const r = parseFloat(firstRow.cells[2].innerText);
+        
+        if (!isNaN(r)) {
+            document.getElementById('label-r').textContent = `${r}`;
+            document.getElementById('label-half-r').textContent = `${(r / 2).toFixed(2)}`;
+            document.getElementById('label-minus-r').textContent = `-${r}`;
+            document.getElementById('label-minus-half-r').textContent = `-${(r / 2).toFixed(2)}`;
 
-            const x = parseFloat(row.cells[0].innerText);
-            const y = parseFloat(row.cells[1].innerText);
-            const r = parseFloat(row.cells[2].innerText);
-            const result = row.cells[3].innerText === "Hit";
-            drawPoint(x, y, r, result);
-            console.log(`Row ${i + 1}:`, x, y, r, result);
-        }
-    }    
+            document.getElementById('label-r-y').textContent = `${r}`;
+            document.getElementById('label-half-r-y').textContent = `${(r / 2).toFixed(2)}`;
+            document.getElementById('label-minus-r-y').textContent = `-${r}`;
+            document.getElementById('label-minus-half-r-y').textContent = `-${(r / 2).toFixed(2)}`;
+        
+            for (let i = 1; i < table.rows.length; i++) {
+                const row = table.rows[i]; 
+                const x = parseFloat(row.cells[0].innerText);
+                const y = parseFloat(row.cells[1].innerText);
+                const result = row.cells[3].innerText === "Hit";
+                drawPoint(x, y, r, result);
+            }
+        }      
 }
-
 
 function clearPoints(data) {
     const svg = document.querySelector("svg"); 
@@ -36,4 +46,29 @@ function drawPoint(x, y, r, result) {
 
     svg.appendChild(circle);
 }
+document.getElementById('graph-svg').addEventListener('click', function(event) {
+    let r = parseFloat(document.getElementById('j_idt7:rValue_label').innerText);
+    if (!r || isNaN(r)) {
+        console.error("Invalid R value");
+        return;
+    }
+    const svg = event.currentTarget;
+    const rect = svg.getBoundingClientRect();
+
+    const clickX = event.clientX - rect.left;
+    const clickY = event.clientY - rect.top;
+    const scaleFactor = 150 / r;
+
+    const x = ((clickX - 200) / scaleFactor);
+    const y = -((clickY - 200) / scaleFactor);
+
+    if (x < -5 || x > 3) {
+        console.error("X value is out of range");
+        return;
+    }
+    document.getElementById('j_idt7:j_idt10_hinput').value = x; 
+    document.getElementById('j_idt7:yValue').value = y;         
+    document.getElementById('j_idt7:j_idt21').click();
+});
+
 window.onload = getValuesFromTable();
