@@ -34,4 +34,8 @@ public class FormBean {
     private boolean shouldUpdateAllPoints(float radius) {
         return !resultBean.getResults().isEmpty() && resultBean.getResults().get(0).getR() != radius;
     }    
+    public void processClean() {
+        databaseService.removeAllPoints(); 
+        resultBean.clearPoints();
+    }
 }

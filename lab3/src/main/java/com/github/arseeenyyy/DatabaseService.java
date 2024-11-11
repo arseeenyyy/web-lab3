@@ -41,4 +41,8 @@ public class DatabaseService {
             point.setIsHit(Checker.isHit(point.getX(), point.getY(), radius));
         }
     }
+    @Transactional
+    public void removeAllPoints() {
+        entityManager.createQuery("DELETE FROM Point").executeUpdate();
+    }
 }

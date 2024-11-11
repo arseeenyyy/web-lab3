@@ -79,6 +79,11 @@
                     <f:ajax execute="@form" listener="#{formBean.processForm(pointBean)}" render="resultTable" onevent="getValuesFromTable"/>
                 </h:commandButton>        
             </h:form>
+            <h:form> 
+                <h:commandButton value="Clear" style="font-size: 18px; font-family: monospace; color: #333; background-color: #fafafa; border: 2px solid black; border-radius: 10px; padding: 10px 20px; cursor: pointer; transition: background-color 0.3s ease-in-out, color 0.3s ease; outline: none; display: block; margin: 20px auto; width: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                    <f:ajax execute="@form" listener="#{formBean.processClean()}" render="resultTable" onevent="clearPoints"/>
+                </h:commandButton>
+            </h:form>
             <h:form>
                 <h:commandButton value="Welcome page" action="index.xhtml" style="font-size: 18px; font-family: monospace; color: #333; background-color: #fafafa; border: 2px solid black; border-radius: 10px; padding: 10px 20px; cursor: pointer; transition: background-color 0.3s ease-in-out, color 0.3s ease; outline: none; display: block; margin: 20px auto; width: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"/>
             </h:form>
@@ -108,7 +113,7 @@
                 <f:facet name="header">
                     <h:outputText value="Hit" />
                 </f:facet>
-                <h:outputText value="#{point.isHit ? 'Yes' : 'No'}" />
+                <h:outputText value="#{point.isHit ? 'Hit' : 'Miss'}" />
             </h:column>
             <h:column>
                 <f:facet name="header">

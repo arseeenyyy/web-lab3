@@ -1,16 +1,39 @@
 function getValuesFromTable(data) {
     if (data.status == "success") {
+        clearPoints();
         const table = document.getElementById('resultTable');
         for (let i = 1; i < table.rows.length; i ++) {
             const row = table.rows[i]; 
-            const cell1 = row.cells[0].innerText;
-            const cell2 = row.cells[1].innerText;
-            const cell3 = row.cells[2].innerText;
-            const cell4 = row.cells[3].innerText;
-            const cell5 = row.cells[4].innerText;
-            const cell6 = row.cells[5].innerText;
-            
-            console.log(`Row ${i + 1}:`, cell1, cell2, cell3, cell4, cell5, cell6);
+
+            const x = parseFloat(row.cells[0].innerText);
+            const y = parseFloat(row.cells[1].innerText);
+            const r = parseFloat(row.cells[2].innerText);
+            const result = row.cells[3].innerText === "Hit";
+            drawPoint(x, y, r, result);
+            console.log(`Row ${i + 1}:`, x, y, r, result);
         }
     }    
 }
+
+
+function clearPoints(data) {
+    const svg = document.querySelector("svg"); 
+    const circles = svg.querySelectorAll("circle"); 
+    circles.forEach(circle => circle.remove());
+}
+
+function drawPoint(x, y, r, result) {
+    const svg = document.querySelector("svg"); 
+    const scaleFactor = 150 / r;
+    const scaledX = x * scaleFactor; 
+    const scaledY = -y * scaleFactor;
+
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute("cx", scaledX); 
+    circle.setAttribute("cy", scaledY);
+    circle.setAttribute("r", 5); 
+    circle.setAttribute("fill", result ? "green" : "red");
+
+    svg.appendChild(circle);
+}
+window.onload = getValuesFromTable();

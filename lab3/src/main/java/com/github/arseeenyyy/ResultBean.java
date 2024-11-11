@@ -28,4 +28,7 @@ public class ResultBean {
             point.setIsHit(Checker.isHit(point.getX(), point.getY(), radius));
         }
     }
+    public void clearPoints() {
+        results.clear();
+    }
 }
