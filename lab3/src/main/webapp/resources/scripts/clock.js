@@ -48,10 +48,10 @@ function displayCanvas(){
     let lengthSeconds = radiusNum - 10;
     let lengthMinutes = radiusNum - 15;
     let lengthHour = lengthMinutes / 1.5;
-    let d = new Date();                //Получаем экземпляр даты
-    let t_sec = 6*d.getSeconds();                           //Определяем угол для секунд
-    let t_min = 6*(d.getMinutes() + (1/60)*d.getSeconds()); //Определяем угол для минут
-    let t_hour = 30*(d.getHours() + (1/60)*d.getMinutes()); //Определяем угол для часов
+    let d = new Date();                
+    let t_sec = 6*d.getSeconds();                           
+    let t_min = 6*(d.getMinutes() + (1/60)*d.getSeconds()); 
+    let t_hour = 30*(d.getHours() + (1/60)*d.getMinutes()); 
 	
     contextHTML.beginPath();
     contextHTML.strokeStyle =  "#FF0000";

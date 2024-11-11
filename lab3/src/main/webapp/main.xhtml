@@ -41,7 +41,7 @@
                     <text x="10" y="-65" font-size="20">-R/2</text>
                     <polygon points="0,0 0, -150 -150,0" fill-opacity="0.6" stroke="navy" fill="purple"></polygon>
                     <path d="M 0 0 H -150 A 150 150 0 0 0 0 150" stroke="navy" fill="purple" fill-opacity="0.6"></path>
-                    <rect x="0" y="0" width="150" height="150" fill-opacity="0.6" stroke="navy" fill="purple"></rect> 1
+                    <rect x="0" y="0" width="150" height="150" fill-opacity="0.6" stroke="navy" fill="purple"></rect> 
                     <polygon points="200,0 190,5 190,-5" fill="black"></polygon> 
                     <polygon points="0,-200 -5,-190 5,-190" fill="black"></polygon> 
                     <text x="180" y="20" font-size="20">R</text>
@@ -76,7 +76,7 @@
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value="Check" style="font-size: 18px; font-family: monospace; color: #333; background-color: #fafafa; border: 2px solid black; border-radius: 10px; padding: 10px 20px; cursor: pointer; transition: background-color 0.3s ease-in-out, color 0.3s ease; outline: none; display: block; margin: 20px auto; width: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                    <f:ajax execute="@form" listener="#{formBean.processForm(pointBean)}" render="resultTable" />
+                    <f:ajax execute="@form" listener="#{formBean.processForm(pointBean)}" render="resultTable" onevent="getValuesFromTable"/>
                 </h:commandButton>        
             </h:form>
             <h:form>
@@ -98,21 +98,18 @@
                 </f:facet>
                 <h:outputText value="#{point.y}" />
             </h:column>
-        
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="R" />
                 </f:facet>
                 <h:outputText value="#{point.r}" />
             </h:column>
-        
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Hit" />
                 </f:facet>
                 <h:outputText value="#{point.isHit ? 'Yes' : 'No'}" />
             </h:column>
-        
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Execution Time" />
@@ -128,8 +125,8 @@
                     <f:convertDateTime pattern="HH:mm:ss dd/MM/yyyy" />
                 </h:outputText>
             </h:column>
-
             </h:dataTable>
-        </div>     
+        </div>   
+        <script type="text/javascript" src="resources/scripts/index.js"></script>
     </h:body>
 </html>
